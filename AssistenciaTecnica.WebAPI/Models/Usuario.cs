@@ -22,7 +22,7 @@ namespace AssistenciaTecnica.WebAPI.Models
          [Required]
         public bool Ativo { get; set; }
          [Required]
-        public string DataAlteração { get; set; }
+        public string DataAlteracao { get; set; }
          [Required]
         public string AlteradoPor { get; set; }
     }

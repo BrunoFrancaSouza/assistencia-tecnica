@@ -12,7 +12,8 @@ export class UsuarioComponent implements OnInit {
 
   constructor( private http: HttpClient ) { }
 
-  Usuarios: any;
+  Usuarios: any = [];
+  FiltroLista = '';
 
   ngOnInit() {
     this.getUsuarios();

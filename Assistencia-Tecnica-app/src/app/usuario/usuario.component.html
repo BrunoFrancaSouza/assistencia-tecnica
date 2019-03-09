@@ -1,28 +1,48 @@
+<div class="form-inline">
+  <div class="form-group mb-2">
+    <input type="text" class="form-control mr-2" placeholder="buscar" [(ngModel)]="FiltroLista">
+    <button class="btn btn-outline-success">Buscar</button>
+  </div>
+</div>
 
- <div *ngFor= "let usuario of Usuarios">
-    UsuarioId: {{usuario.usuarioId}}
-    <br>
-    userName: {{ usuario.userName }}
-    <br>
-    senha: {{ usuario.senha }}
-    <br>
-    nome: {{ usuario.nome }}
-    <br>
-    sobrenome: {{ usuario.sobrenome }}
-    <br>
-    empresa: {{ usuario.empresa }}
-    <br>
-    email: {{ usuario.email }}
-    <br>
-    perfil: {{ usuario.perfil }}
-    <br>
-    ativo: {{ usuario.ativo }}
-    <br>
-    dataAlteração: {{ usuario.dataAlteracao }}
-    <br>
-    alteradoPor: {{ usuario.alteradoPor }}
-    <br>
-  
-  <hr>
-</div>  
+<h1 *ngIf="FiltroLista">
+  Filtro: {{FiltroLista}}
+</h1>
 
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Sobrenome</th>
+      <th>Empresa</th>
+      <th>Email</th>
+      <th>Perfil</th>
+      <th>Ativo</th>
+      <th>Data de Alteração</th>
+      <th>Alterado Por</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="Usuarios && Usuarios.length">
+    <tr *ngFor= "let usuario of Usuarios">
+      <td>{{usuario.usuarioId}}</td>
+      <td>{{usuario.userName}}</td>
+      <td>{{usuario.senha}}</td>
+      <td>{{usuario.empresa}}</td>
+      <td>{{usuario.email}}</td>
+      <td>{{usuario.perfil}}</td>
+      <td>{{usuario.ativo}}</td>
+      <td>{{usuario.dataAlteracao}}</td>
+      <td>{{usuario.alteradoPor}}</td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!Usuarios || !Usuarios.length">
+    <tr>
+      <td colspan="9" class="text-center">
+        <h4>
+          Nenhum registro encontrado
+        </h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
