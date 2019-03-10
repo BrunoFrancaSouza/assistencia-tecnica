@@ -1,18 +1,22 @@
 <div class="form-inline">
   <div class="form-group mb-2">
-    <input type="text" class="form-control mr-2" placeholder="buscar" [(ngModel)]="FiltroLista">
-    <button class="btn btn-outline-success">Buscar</button>
+    <label class="mr-2">
+      Filtro:  
+    </label>
+    <input type="text" class="form-control mr-2" placeholder="Buscar" [(ngModel)]="FiltrarPor">
+    <!-- <button class="btn btn-outline-success">Buscar</button> -->
   </div>
 </div>
 
-<h1 *ngIf="FiltroLista">
-  Filtro: {{FiltroLista}}
-</h1>
+<h5 *ngIf="FiltrarPor">
+  Filtrado por: "{{FiltrarPor}}"
+</h5>
 
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
       <th>#</th>
+      <th>Username</th>
       <th>Nome</th>
       <th>Sobrenome</th>
       <th>Empresa</th>
@@ -23,11 +27,13 @@
       <th>Alterado Por</th>
     </tr>
   </thead>
-  <tbody *ngIf="Usuarios && Usuarios.length">
-    <tr *ngFor= "let usuario of Usuarios">
+  <tbody *ngIf="UsuariosFiltrados && UsuariosFiltrados.length">
+    <tr *ngFor= "let usuario of UsuariosFiltrados">
       <td>{{usuario.usuarioId}}</td>
       <td>{{usuario.userName}}</td>
-      <td>{{usuario.senha}}</td>
+      <!-- <td>{{usuario.senha}}</td> -->
+      <td>{{usuario.nome}}</td>
+      <td>{{usuario.sobrenome}}</td>
       <td>{{usuario.empresa}}</td>
       <td>{{usuario.email}}</td>
       <td>{{usuario.perfil}}</td>
@@ -36,11 +42,11 @@
       <td>{{usuario.alteradoPor}}</td>
     </tr>
   </tbody>
-  <tfoot *ngIf="!Usuarios || !Usuarios.length">
+  <tfoot *ngIf="!UsuariosFiltrados || !UsuariosFiltrados.length">
     <tr>
       <td colspan="9" class="text-center">
         <h4>
-          Nenhum registro encontrado
+          Nenhum registro encontrado.
         </h4>
       </td>
     </tr>
