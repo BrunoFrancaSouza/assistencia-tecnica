@@ -28,6 +28,8 @@ namespace AssistenciaTecnica.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AssistenciaTecnicaContext>(x => x.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();
         }

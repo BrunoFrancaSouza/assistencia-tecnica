@@ -16,6 +16,6 @@ namespace AssistenciaTecnica.Domain
         public string AlteradoPor { get; set; }
 
         public int EmpresaId { get; set; }
-        public Empresa Empresa { get; set; }
+        public Empresa Empresa { get; } // ReadOnly
     }
 }

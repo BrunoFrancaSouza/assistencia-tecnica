@@ -17,7 +17,7 @@ namespace AssistenciaTecnica.Domain
         public DateTime DataAlteracao { get; set; }
         public string AlteradoPor { get; set; }
     
-        public List<Usuario> Usuarios { get; set; }
+        public List<Usuario> Usuarios { get; } // ReadOnly
     }
 
 
