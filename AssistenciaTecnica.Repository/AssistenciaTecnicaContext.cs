@@ -1,14 +1,15 @@
 using System.Linq;
+using AssistenciaTecnica.Domain;
 using AssistenciaTecnica.WebAPI.Data.EntitiesConfiguration;
-using AssistenciaTecnica.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AssistenciaTecnica.WebAPI.Data
+namespace AssistenciaTecnica.Repository
 {
-    public class DataContext : DbContext
+    public class AssistenciaTecnicaContext : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base (options) {}
+        public AssistenciaTecnicaContext(DbContextOptions<AssistenciaTecnicaContext> options) : base (options) {}
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Empresa> Empresas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

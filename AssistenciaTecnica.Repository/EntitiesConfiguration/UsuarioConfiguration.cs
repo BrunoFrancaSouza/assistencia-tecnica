@@ -1,4 +1,4 @@
-using AssistenciaTecnica.WebAPI.Models;
+using AssistenciaTecnica.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssistenciaTecnica.WebAPI.Data.EntitiesConfiguration

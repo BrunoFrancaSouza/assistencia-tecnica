@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AssistenciaTecnica.WebAPI.Data;
+using AssistenciaTecnica.Repository;
 using AssistenciaTecnica.WebAPI.Firebase;
-using AssistenciaTecnica.WebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,11 +14,11 @@ namespace AssistenciaTecnica.WebAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        public readonly DataContext Context;
+        public readonly AssistenciaTecnicaContext Context;
 
         private readonly string strMensagemErro = "Erro de requisição no banco de dados: ";
 
-        public ValuesController(DataContext context)
+        public ValuesController(AssistenciaTecnicaContext context)
         {
             this.Context = context;
         }
@@ -47,7 +46,7 @@ namespace AssistenciaTecnica.WebAPI.Controllers
         {
             try
             {
-                var response = await Context.Usuarios.FirstOrDefaultAsync(usuario => usuario.UsuarioId == id);
+                var response = await Context.Usuarios.FirstOrDefaultAsync(usuario => usuario.Id == id);
                 return Ok(response);
             }
             catch (System.Exception ex)
