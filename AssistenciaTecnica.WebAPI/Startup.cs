@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace AssistenciaTecnica.WebAPI
 {
@@ -29,8 +30,12 @@ namespace AssistenciaTecnica.WebAPI
         {
             services.AddDbContext<AssistenciaTecnicaContext>(x => x.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => {
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;  // https://pt.stackoverflow.com/questions/364558/web-api-n%C3%A3o-retorna-dados-relacionados
+                });;
+                    
             services.AddCors();
         }
 

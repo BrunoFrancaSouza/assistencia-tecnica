@@ -15,7 +15,8 @@ namespace AssistenciaTecnica.Domain
         public DateTime DataAlteracao { get; set; }
         public string AlteradoPor { get; set; }
 
+        //Foreign key Empresa Standard
         public int EmpresaId { get; set; }
-        public Empresa Empresa { get; } // ReadOnly
+        public Empresa Empresa { get; set; }
     }
 }

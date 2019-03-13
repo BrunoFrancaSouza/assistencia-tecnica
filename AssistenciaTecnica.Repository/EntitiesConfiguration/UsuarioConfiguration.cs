@@ -14,6 +14,9 @@ namespace AssistenciaTecnica.WebAPI.Data.EntitiesConfiguration
             //     .HasColumnType("nvarchar(250)");
             // .HasDefaultValueSql("");
 
+            // builder.HasOne(a => a.Empresa)
+            //     .WithMany(u => u.Usuarios);
+
         }
     }
 }

@@ -14,16 +14,32 @@ namespace AssistenciaTecnica.Repository
         public GenericRepository(AssistenciaTecnicaContext context)
         {
             _context = context;
-        }
-        
-        public IEnumerable<T> GetAll()
-        {
-            return _context.Set<T>().ToList();
+            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking; // Não "travar" o objeto no banco de dados para UPDATE e DELETE (query)
         }
 
-        public async Task<T[]> GetAllAsync()
+        public IEnumerable<T> GetAll(string[] includes = null)
+        {
+            // return _context.Set<T>().ToList();
+
+            IQueryable<T> query = _context.Set<T>(); //.AsQueryable();
+
+            // foreach (var include in includes){
+            //     query = query.Include(include);
+            // }
+
+            return query;
+        }
+
+        public async Task<T[]> GetAllAsync(string[] includes = null)
         {
             IQueryable<T> query = _context.Set<T>(); //.AsQueryable();
+
+            if(includes != null){
+                foreach (var include in includes){
+                    query = query.Include(include);
+                }
+            }
+            
             return await query.ToArrayAsync();
         }
 
