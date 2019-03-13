@@ -1,17 +1,17 @@
 import { Usuario } from './Usuario';
 
 export interface Empresa {
-    Id: number;
-    RazaoSocial: string;
-    NomeFantasia: string;
-    CNPJ: string;
-    Setor: string;
-    Endereco: string;
-    Email: string;
-    Telefone: string;
-    Ativo: boolean;
-    DataAlteracao: Date | string;
-    AlteradoPor: string;
+    id: number;
+    razaoSocial: string;
+    nomeFantasia: string;
+    cnpj: string;
+    setor: string;
+    endereco: string;
+    email: string;
+    eelefone: string;
+    ativo: boolean;
+    dataAlteracao: Date | string;
+    alteradoPor: string;
 
-    Usuarios: Usuario[];
+    usuarios: Usuario[];
 }

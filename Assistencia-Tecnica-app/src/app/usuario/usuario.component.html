@@ -34,11 +34,14 @@
       <!-- <td>{{usuario.senha}}</td> -->
       <td>{{usuario.nome}}</td>
       <td>{{usuario.sobrenome}}</td>
-      <td>{{usuario.empresa}}</td>
+      
+      <td *ngIf="usuario.empresa">{{usuario.empresa.nomeFantasia}}</td>
+      <td *ngIf="!usuario.empresa"></td>
+
       <td>{{usuario.email}}</td>
       <td>{{usuario.perfil}}</td>
       <td>{{usuario.ativo}}</td>
-      <td>{{usuario.dataAlteracao}}</td>
+      <td>{{usuario.dataAlteracao | date:'dd/MM/yyyy HH:mm:ss'}}</td>
       <td>{{usuario.alteradoPor}}</td>
     </tr>
   </tbody>

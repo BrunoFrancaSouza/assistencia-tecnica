@@ -16,7 +16,7 @@ namespace AssistenciaTecnica.Domain
         public string AlteradoPor { get; set; }
 
         //Foreign key Empresa Standard
-        public int EmpresaId { get; set; }
+        public int empresaId { get; set; }
         public Empresa Empresa { get; set; }
     }
 }
