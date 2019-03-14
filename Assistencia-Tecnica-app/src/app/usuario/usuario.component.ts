@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { debug } from 'util';
 import { UsuarioService } from '../_Services/Usuario.service';
 import { Usuario } from '../_Models/Usuario';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-usuario',
@@ -16,19 +19,27 @@ export class UsuarioComponent implements OnInit {
   Usuarios: Usuario[];
   UsuariosFiltrados: Usuario[];
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  dataSource = new MatTableDataSource(this.UsuariosFiltrados);
+
+  displayedColumns: string[] = ['id', 'userName', 'nome', 'sobrenome', 'empresa', 'email', 'perfil', 'ativo', 'dataAlteracao',
+                                'alteradoPor'
+                               ];
+
   filtro = '';
   get FiltrarPor(): string {
     return this.filtro;
   }
 
   set FiltrarPor(value: string) {
-    // value = value.toLocaleLowerCase();
     this.filtro = value;
     this.UsuariosFiltrados = this.FiltrarPor ?  this.FiltrarUsuarios(this.filtro) : this.Usuarios;
   }
 
 
   ngOnInit() {
+    this.dataSource.sort = this.sort;
     this.getAllUsuarios();
     // this.getUsuarioByID(6);
     // this.getUsuarioByNome('Bruno');

@@ -41,7 +41,7 @@
       <td>{{usuario.email}}</td>
       <td>{{usuario.perfil}}</td>
       <td>{{usuario.ativo}}</td>
-      <td>{{usuario.dataAlteracao | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+      <td>{{usuario.dataAlteracao | DateFormatPipe }}</td>
       <td>{{usuario.alteradoPor}}</td>
     </tr>
   </tbody>
@@ -55,3 +55,73 @@
     </tr>
   </tfoot>
 </table>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!-- id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- userName Column -->
+  <ng-container matColumnDef="userName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> userName </th>
+    <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+  </ng-container>
+
+  <!-- nome Column -->
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> nome </th>
+    <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+  </ng-container>
+
+  <!-- sobrenome Column -->
+  <ng-container matColumnDef="sobrenome">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> sobrenome </th>
+    <td mat-cell *matCellDef="let element"> {{element.sobrenome}} </td>
+  </ng-container>
+
+  <!-- empresa Column -->
+  <ng-container matColumnDef="empresa">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> empresa </th>
+    <td mat-cell *matCellDef="let element"> {{element.empresa}} </td>
+  </ng-container>
+
+  <!-- email Column -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+  <!-- perfil Column -->
+  <ng-container matColumnDef="perfil">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> perfil </th>
+    <td mat-cell *matCellDef="let element"> {{element.perfil}} </td>
+  </ng-container>
+
+  <!-- ativo Column -->
+  <ng-container matColumnDef="ativo">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> ativo </th>
+    <td mat-cell *matCellDef="let element"> {{element.ativo}} </td>
+  </ng-container>
+
+  <!-- dataAlteracao Column -->
+  <ng-container matColumnDef="dataAlteracao">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> dataAlteracao </th>
+    <td mat-cell *matCellDef="let element"> {{element.dataAlteracao}} </td>
+  </ng-container>
+
+  <!-- alteradoPor Column -->
+  <ng-container matColumnDef="alteradoPor">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> alteradoPor </th>
+    <td mat-cell *matCellDef="let element"> {{element.alteradoPor}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<h5 *ngIf="dataSource">
+  dataSource: "{{dataSource.}}"
+</h5>
