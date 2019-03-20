@@ -5,3 +5,28 @@ table {
 th.mat-sort-header-sorted {
     color: black;
 }
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.input-group .select-filtro {
+    width: 30%;
+}
+
+.input-group .input-filtro {
+    margin-left: 20px;
+}
+
+

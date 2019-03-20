@@ -27,7 +27,6 @@ namespace AssistenciaTecnica.WebAPI.Controllers
             try
             {
                 // Lista de propriedades que são Foreign Key para buscar TAMBÉM as informações das tabelas relacionadas (FK's).
-                // repository.GetAllAsync(tabelasInclude);
                 string[] tabelasInclude = {"Empresa"};
 
                 var response = await repository.GetAllAsync(tabelasInclude);

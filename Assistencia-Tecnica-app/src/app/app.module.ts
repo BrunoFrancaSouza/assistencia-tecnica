@@ -13,8 +13,11 @@ import { FormsModule } from '@angular/forms'; // Necessário para o Two Way Data
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+// tslint:disable-next-line:max-line-length
+import { MatFormFieldModule, MatInputModule, MatSelectModule, MatSortModule, MatPaginatorModule, MatPaginatorIntl } from '@angular/material';
 
 import { DateFormatPipePipe } from './_util/pipes/DateFormatPipe.pipe';
+import { MatPaginatorIntlPtBR } from 'src/_MaterialTheme/MaterialTable/MatPaginatorIntl/MatPaginatorIntlPtBR';
 
 
 @NgModule({
@@ -31,9 +34,16 @@ import { DateFormatPipePipe } from './_util/pipes/DateFormatPipe.pipe';
       FormsModule,
       BrowserAnimationsModule,
       MatButtonModule,
-      MatTableModule
+      MatTableModule,
+      MatInputModule,
+      MatFormFieldModule,
+      MatSelectModule,
+      MatPaginatorModule,
+      MatSortModule
    ],
-   providers: [],
+   providers: [
+      { provide: MatPaginatorIntl, useValue: MatPaginatorIntlPtBR() }
+   ],
    bootstrap: [
       AppComponent
    ]
