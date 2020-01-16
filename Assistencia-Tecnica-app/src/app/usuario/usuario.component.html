@@ -41,90 +41,122 @@
     </tr>
   </tfoot>
 </table> -->
-<h4>Usuários</h4>
-<hr>
 
-<div class="input-group">
-    <mat-form-field class="select-filtro">
-      <mat-select placeholder="Filtrar Por" [(value)]="FiltrarPor">
-        <mat-option></mat-option>
-        <mat-option value="id">Id</mat-option>
-        <mat-option value="userName">UserName</mat-option>
-        <mat-option value="nome">Nome</mat-option>
-        <mat-option value="sobrenome">Sobrenome</mat-option>
-      </mat-select>
-    </mat-form-field>
+<div class="container">
+  <div class="input-group">
+      <mat-form-field class="select-filtro">
+        <mat-select placeholder="Filtrar Por" [(value)]="FiltrarPor">
+          <mat-option></mat-option>
+          <mat-option value="id">Id</mat-option>
+          <mat-option value="userName">UserName</mat-option>
+          <mat-option value="nome">Nome</mat-option>
+          <mat-option value="sobrenome">Sobrenome</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field class="input-filtro">
-      <input matInput (keyup)="filtrarUsuarios($event.target.value)" placeholder="Valor" [(ngModel)]="ValorFiltro">
-    </mat-form-field>
+      <mat-form-field class="input-filtro">
+        <input matInput (keyup)="filtrarUsuarios($event.target.value)" placeholder="Valor" [(ngModel)]="ValorFiltro">
+      </mat-form-field>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource" matSort>
+      
+        <!-- id Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="mobile-label">#:</span>
+          {{element.id}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- userName Column -->
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="mobile-label">Username:</span>
+          {{element.userName}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- nome Column -->
+      <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="mobile-label">Nome:</span>
+          {{element.nome}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- sobrenome Column -->
+      <ng-container matColumnDef="sobrenome">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Sobrenome</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="mobile-label">Nome:</span> 
+          {{element.sobrenome}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- empresa Column -->
+      <ng-container matColumnDef="empresa">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Empresa</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="mobile-label">Empresa:</span>
+          {{element.empresa ? element.empresa.nomeFantasia : '' }} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- email Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="mobile-label">Email:</span>
+          {{element.email}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- perfil Column -->
+      <ng-container matColumnDef="perfil">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Perfil</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+        <span class="mobile-label">Perfil:</span>          
+          {{element.perfil}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- ativo Column -->
+      <ng-container matColumnDef="ativo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Ativo</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="mobile-label">Ativo:</span>
+          {{element.ativo == true ? 'Sim' : 'Não'}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- dataAlteracao Column -->
+      <ng-container matColumnDef="dataAlteracao">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Data de Alteração</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="mobile-label">Dt. Alt.:</span>
+          {{element.dataAlteracao | DateFormatPipe}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- alteradoPor Column -->
+      <ng-container matColumnDef="alteradoPor">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Alterado Por</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="mobile-label">Alt. Por:</span>
+          {{element.alteradoPor}} 
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
+  </div>
 </div>
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-    <!-- id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
-
-    <!-- userName Column -->
-    <ng-container matColumnDef="userName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
-      <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
-    </ng-container>
-
-    <!-- nome Column -->
-    <ng-container matColumnDef="nome">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
-      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-    </ng-container>
-
-    <!-- sobrenome Column -->
-    <ng-container matColumnDef="sobrenome">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sobrenome</th>
-      <td mat-cell *matCellDef="let element"> {{element.sobrenome}} </td>
-    </ng-container>
-
-    <!-- empresa Column -->
-    <ng-container matColumnDef="empresa">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Empresa</th>
-      <td mat-cell *matCellDef="let element"> {{element.empresa ? element.empresa.nomeFantasia : '' }} </td>
-    </ng-container>
-
-    <!-- email Column -->
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-    </ng-container>
-
-    <!-- perfil Column -->
-    <ng-container matColumnDef="perfil">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Perfil</th>
-      <td mat-cell *matCellDef="let element"> {{element.perfil}} </td>
-    </ng-container>
-
-    <!-- ativo Column -->
-    <ng-container matColumnDef="ativo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ativo</th>
-      <td mat-cell *matCellDef="let element"> {{element.ativo == true ? 'Sim' : 'Não'}} </td>
-    </ng-container>
-
-    <!-- dataAlteracao Column -->
-    <ng-container matColumnDef="dataAlteracao">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Data de Alteração</th>
-      <td mat-cell *matCellDef="let element"> {{element.dataAlteracao | DateFormatPipe}} </td>
-    </ng-container>
-
-    <!-- alteradoPor Column -->
-    <ng-container matColumnDef="alteradoPor">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Alterado Por</th>
-      <td mat-cell *matCellDef="let element"> {{element.alteradoPor}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
-</div>

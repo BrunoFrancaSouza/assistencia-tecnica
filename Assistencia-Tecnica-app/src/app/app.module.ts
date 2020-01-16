@@ -8,16 +8,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { NavComponent } from './nav/nav.component';
 
-import { FormsModule } from '@angular/forms'; // Necessário para o Two Way Data Binding
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Necessário para o Two Way Data Binding
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 // tslint:disable-next-line:max-line-length
-import { MatFormFieldModule, MatInputModule, MatSelectModule, MatSortModule, MatPaginatorModule, MatPaginatorIntl } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatSelectModule, MatSortModule, MatPaginatorModule, MatPaginatorIntl, MatToolbarModule, MatListModule } from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 
 import { DateFormatPipePipe } from './_util/pipes/DateFormatPipe.pipe';
 import { MatPaginatorIntlPtBR } from 'src/_MaterialTheme/MaterialTable/MatPaginatorIntl/MatPaginatorIntlPtBR';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -25,7 +31,9 @@ import { MatPaginatorIntlPtBR } from 'src/_MaterialTheme/MaterialTable/MatPagina
       AppComponent,
       UsuarioComponent,
       NavComponent,
-      DateFormatPipePipe
+      DateFormatPipePipe,
+      LoginComponent,
+      HomeComponent
    ],
    imports: [
       AppRoutingModule,
@@ -33,13 +41,19 @@ import { MatPaginatorIntlPtBR } from 'src/_MaterialTheme/MaterialTable/MatPagina
       HttpClientModule,
       FormsModule,
       BrowserAnimationsModule,
+      ReactiveFormsModule,
       MatButtonModule,
       MatTableModule,
       MatInputModule,
       MatFormFieldModule,
       MatSelectModule,
       MatPaginatorModule,
-      MatSortModule
+      MatSortModule,
+      MatCardModule,
+      MatIconModule,
+      MatSidenavModule,
+      MatToolbarModule,
+      MatListModule
    ],
    providers: [
       { provide: MatPaginatorIntl, useValue: MatPaginatorIntlPtBR() }

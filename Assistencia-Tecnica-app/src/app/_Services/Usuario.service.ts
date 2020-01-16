@@ -24,4 +24,12 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.baseURL + '/GetByNome/' + nome);
   }
 
+  getByUserName(userName: string): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.baseURL + '/GetByUserName/' + userName);
+  }
+
+  autorizaUsuario(userName: string, senha: string) {
+
+  }
+
 }

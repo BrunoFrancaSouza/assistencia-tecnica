@@ -1,0 +1,28 @@
+<header> 
+  <h1>Assistência Técnica</h1>
+  <h3>Bruno França</h3>
+</header>
+
+<form>
+  <div class="group">
+    <mat-form-field class="input-form">
+      <input matInput placeholder="Email" [formControl]="emailFormControl">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Informe um email válido
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email é <strong>obrigatório</strong>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="input-form">
+      <input (click)="exibirUsuarios()" matInput placeholder="Senha" [type]="hide ? 'password' : 'text'">
+      <mat-icon class="iconHide" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button class="btnEntrar" color="primary">Entrar</button>
+</form>
+
+<footer><a href="http://www.polymer-project.org/" target="_blank"><img src="https://www.polymer-project.org/images/logos/p-logo.svg"></a>
+  <p>You Gotta Love <a href="http://www.polymer-project.org/" target="_blank">Google</a></p>
+</footer>

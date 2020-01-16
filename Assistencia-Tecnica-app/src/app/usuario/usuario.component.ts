@@ -19,6 +19,8 @@ export class UsuarioComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  // isMobile = this.currentDisplay === 'mobile';
+
   // usuario = new Usuario();
   usuarios: Usuario[];
   usuariosFiltrados: Usuario[];
